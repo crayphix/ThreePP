@@ -2,9 +2,12 @@
 Libraries needed to be installed: 
 'pip install cymruwhois', 'pip install pythonwhois'
 """
+import socket
 from cymruwhois import Client
 import dns.resolver
+import json
 import pythonwhois
+from pprint import pprint
 
 """
 Function findDNS
@@ -27,11 +30,7 @@ ip =('216.35.221.76')  # Assign IP
 c = Client()  # Create Client object
 r = c.lookup(ip)  # Assign lookup data to variable
 print(r.owner)  #  print owner
-"""
-Use lookupmany() to breeze through multiple ip addresses do not loop lookup()
-ex: for r in c.lookupmany([ip, ip_ms]):
-        print r.owner
-"""
+
 
 # get information from Arin using hostname
 domain = pythonwhois.get_whois('npr.org')
