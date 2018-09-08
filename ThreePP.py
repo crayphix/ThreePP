@@ -5,17 +5,19 @@ Libraries needed to be installed:
 from cymruwhois import Client
 import dns.resolver
 import pythonwhois
+import sys
 
 foo = 0
+
+#initialize domanin variable  
+host = sys.argv[1]
+
 
 # create a new instance named 'myResolver'
 myResolver = dns.resolver.Resolver()
 
 # create client object
 c = Client()
-
-#initialize domanin variable
-host = 'spotify.com'
 
 # Lookup the record(s) for amazon.com
 myAnswers = myResolver.query(host)
@@ -34,3 +36,4 @@ print(host + ' Registrar ------>')
 domain = pythonwhois.get_whois(host)
 print(domain['registrar'])
 print
+
