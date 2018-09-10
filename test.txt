@@ -1,0 +1,5 @@
+spotify.com
+104.199.240.211
+google.com
+reddit.com
+amazon.com
