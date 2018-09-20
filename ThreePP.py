@@ -4,10 +4,10 @@ domain name and/or ip range.
 
 @BryanSpeelman & @ChrisThompson
 
----Version 0.3---  9/10/18
+---Version 0.4---  9/19/18
 
 Testing input of files. 
-***Bug getting DNS when reading from file***
+****TODO: Gather test data to start comparison method*****
 
 Libraries needed to be installed:
 'pip install cymruwhois', 'pip install pythonwhois'
@@ -19,7 +19,6 @@ import pythonwhois
 import sys
 import socket
 
-<<<<<<< HEAD
 def main(): 
     # Use cmd line arg flag to determine what type of lookup to perform
     if(sys.argv[1] == '-f'):
@@ -66,65 +65,22 @@ def inFile(file):
 
     #Read file contents and filter actions
     for host in host_file:
-        # if host name ex: amazon.com
-        if('.com' in host):
-            getHostinfo(host)
-        
-        #if IP address 
-        else:
-            getIPinfo(host)
+      host = host.strip() # remove preceding and trailing whitespace
+      singleQuery(host)
+
     # close file
     host_file.close()
 
 def singleQuery(host):
     # if host name ex: amazon.com
-    if('.com' in host):
+    if('.com' in host or 
+       '.org' in host or
+       '.net' in host): 
+
         getHostinfo(host)
     
     #if IP address 
     else:
         getIPinfo(host)
-=======
-foo = 0
-
-# create client object
-c = Client()
-
-#initialize domanin variable with arg from cmd line  
-host = sys.argv[1]
-
-if('.com' in host):
-    # create a new instance named 'myResolver'
-    myResolver = dns.resolver.Resolver()
-
-    # Lookup the record(s) for amazon.com
-    myAnswers = myResolver.query(host)
-
-    # loop output if multiple IP's
-    print('\n' + host + '\n')
-    for rdata in myAnswers:  # for each response
-        print(rdata)  # print the data
-        print('Owner ---->')
-        foo = rdata
-        r = c.lookup(foo)  # Assign lookup data to variable
-        print(r.owner)  # print owner
-        print('-' * 70 + '\n')
-
-    # get registrar from Arin using hostname
-    print(host + ' Registrar ------>')
-    domain = pythonwhois.get_whois(host)
-    print(domain['registrar'])
-    print
-
-
-else:
-    print('\n' + host)
-    print('Owner ---->')
-    r = c.lookup(host)  # Assign lookup data to variable
-    print(r.owner)  # print owner
-    print('-' * 70 + '\n')
-
->>>>>>> master
-
 # Call main function
 main()
