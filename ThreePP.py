@@ -82,5 +82,6 @@ def singleQuery(host):
     #if IP address 
     else:
         getIPinfo(host)
+
 # Call main function
 main()
